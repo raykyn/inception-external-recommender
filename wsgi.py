@@ -13,16 +13,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from ariadne.contrib.test import TestRecommender
+#from ariadne.contrib.test import TestRecommender
 from ariadne.server import Server
 from ariadne.util import setup_logging
-from ariadne.contrib.spacy import SpacyNerClassifier
+from ariadne.contrib.flair import FlairRecursiveTagger
 
 setup_logging()
 
 server = Server()
 
-server.add_classifier("spacy_ner", SpacyNerClassifier("en_core_web_sm"))
+server.add_classifier("flair_rec", FlairRecursiveTagger("models/best-model.pt", split_sentences=False))
+# server.add_classifier("flair_ner", FlairNERClassifier("models/best-model.pt", split_sentences=False))
+# server.add_classifier("spacy_ner", SpacyNerClassifier("en_core_web_sm"))
 # server.add_classifier("spacy_pos", SpacyPosClassifier("en_core_web_sm"))
 # server.add_classifier("sklearn_sentence", SklearnSentenceClassifier())
 # server.add_classifier("jieba", JiebaSegmenter())
